@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package sum;
+
+option go_package = "github.com/Abhinav2408/grpc/calculator/proto";
+
+message CalculatorRequest{
+    int32 one = 1;
+    int32 two = 2;
+}
+
+message CalculatorResponse{
+    int32 result = 1;
+}
+
+message PrimeRequest{
+    uint32 n = 1;
+}
+
+message PrimeResponse{
+    uint32 res = 1;
+}
+
+message AverageRequest{
+    int32 num = 1;
+}
+
+message AverageResponse{
+    double res = 1;
+}
+
+message MaxRequest{
+    int32 num =1;
+}
+
+message MaxResponse{
+    int32 res = 1;
+}
+
+service CalculatorService{
+    rpc Calculator(CalculatorRequest) returns (CalculatorResponse);
+    rpc Prime(PrimeRequest) returns (stream PrimeResponse);
+    rpc Average(stream AverageRequest) returns (AverageResponse);
+    rpc Max(stream MaxRequest) returns (stream MaxResponse);
+}
